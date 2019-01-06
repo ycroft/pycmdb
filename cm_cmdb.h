@@ -16,13 +16,27 @@
  * =====================================================================================
  */
 
+#ifndef _CM_CMDB_H_
+#define _CM_CMDB_H_
+
 #include "stdint.h"
 
 typedef void * CM_CMDB;
 
-// if exist. try to recover from db file
-CM_CMDB CmCmdbCreateStorage(const char * name,
-        const char * dir);
+// you have 2 way to create cmdb
+//
+// 1. use CmCmdbCreateStorage to create local database.
+//      it will return db handle. you do not need to connect to it.
+//
+// 2. use CmCmdbConnectStorage to connect to a exist database
+//
+
+CM_CMDB CmCmdbCreateStorage(const char * dir,
+        uint32_t ip,
+        uint16_t port);
+
+CM_CMDB CmCmdbConnectStorage(uint32_t ip,
+        uint16_t port);
 
 // completely remove db files
 void CmCmdbDestroyStorage(CM_CMDB db);
@@ -69,4 +83,6 @@ uint32_t CmCmdbRemove(CM_CMDB db,
 // non-block interface
 // task will be executed silently
 uint32_t CmCmdbFlush(CM_CMDB db);
+
+#endif /* _CM_CMDB_H_ */
 
