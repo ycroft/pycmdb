@@ -31,9 +31,10 @@ typedef void * CM_CMDB;
 // 2. use CmCmdbConnectStorage to connect to a exist database
 //
 
-CM_CMDB CmCmdbCreateStorage(const char * dir,
-        uint32_t ip,
-        uint16_t port);
+// @deprecated
+// CM_CMDB CmCmdbCreateStorage(const char * dir,
+//         uint32_t ip,
+//         uint16_t port);
 
 CM_CMDB CmCmdbConnectStorage(uint32_t ip,
         uint16_t port);
